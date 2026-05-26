@@ -3,819 +3,945 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TruthShield — Real-Time Scam & Fraud Protection</title>
+<title>TruthArmor — Protect the People Who Need It Most</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --navy: #0d1b3e;
-    --navy-mid: #132248;
-    --navy-light: #1a2f5e;
-    --white: #f8f9fc;
-    --gray: #8a93a8;
-    --gray-light: #e8eaf0;
-    --green: #1db97b;
-    --green-bg: #e8faf2;
-    --yellow: #f0a500;
-    --yellow-bg: #fff8e6;
-    --red: #e8394a;
+    --navy: #0c1a38;
+    --navy-mid: #122050;
+    --navy-light: #1c3068;
+    --teal: #0d7f6e;
+    --teal-light: #14a890;
+    --teal-glow: rgba(13,127,110,0.18);
+    --white: #f7f8fc;
+    --soft: #eef1f8;
+    --gray: #6b7898;
+    --gray-light: #d8dde8;
+    --green: #1aad78;
+    --green-bg: #eafaf3;
+    --yellow: #e89800;
+    --yellow-bg: #fff8e0;
+    --red: #d93a4a;
     --red-bg: #fdeaec;
-    --accent: #3a6bff;
+    --warm: #f5f0e8;
   }
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--white);
     color: var(--navy);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: 'DM Serif Display', serif; }
+  h1, h2, h3 { font-family: 'Lora', serif; font-weight: 600; }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(248,249,252,0.88);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(13,27,62,0.07);
+    background: rgba(247,248,252,0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(12,26,56,0.06);
   }
+  .nav-link { color: var(--navy); font-size: 14px; font-weight: 500; text-decoration: none; opacity: 0.65; transition: opacity .2s; }
+  .nav-link:hover { opacity: 1; }
+  .logo-text { font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--navy); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
 
-  /* HERO BACKGROUND MESH */
+  /* ── HERO ── */
   .hero-bg {
-    background: linear-gradient(135deg, #0d1b3e 0%, #1a2f5e 45%, #0e2247 100%);
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(150deg, #0a1730 0%, #112045 40%, #0c2255 70%, #0d2a50 100%);
+    position: relative; overflow: hidden;
   }
   .hero-bg::before {
     content: '';
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 55% at 80% 50%, rgba(58,107,255,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(29,185,123,0.12) 0%, transparent 60%);
+      radial-gradient(ellipse 70% 60% at 85% 40%, rgba(13,127,110,0.22) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 50% at 15% 75%, rgba(20,168,144,0.10) 0%, transparent 60%);
   }
   .hero-grid {
     background-image:
-      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-    position: absolute; inset: 0;
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 52px 52px;
+    position: absolute; inset: 0; pointer-events: none;
   }
 
-  /* PHONE MOCKUP */
-  .phone-shell {
-    width: 220px; height: 440px;
-    background: #111827;
-    border-radius: 36px;
-    border: 6px solid #2a3352;
-    box-shadow:
-      0 40px 80px rgba(0,0,0,0.5),
-      0 0 0 1px rgba(255,255,255,0.05),
-      inset 0 0 0 2px rgba(255,255,255,0.04);
-    position: relative;
-    overflow: hidden;
-  }
-  .phone-notch {
-    width: 70px; height: 22px;
-    background: #111827;
-    border-radius: 0 0 14px 14px;
-    margin: 0 auto;
-    position: relative; z-index: 2;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .phone-notch::after {
-    content: '';
-    width: 10px; height: 10px;
-    background: #1e2640;
-    border-radius: 50%;
-    border: 2px solid #2a3352;
-  }
-  .phone-screen {
-    background: linear-gradient(160deg, #0f172a 0%, #0d1b3e 100%);
-    height: 100%;
-    padding: 8px 12px 16px;
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .phone-status { display: flex; justify-content: space-between; align-items: center; }
-  .phone-time { color: rgba(255,255,255,0.7); font-size: 11px; font-weight: 600; }
-  .risk-card {
-    border-radius: 14px; padding: 12px;
-    animation: floatCard 4s ease-in-out infinite;
-  }
-  .risk-card.red { background: rgba(232,57,74,0.15); border: 1px solid rgba(232,57,74,0.3); }
-  .risk-card.green { background: rgba(29,185,123,0.15); border: 1px solid rgba(29,185,123,0.3); }
-  .risk-card.yellow { background: rgba(240,165,0,0.12); border: 1px solid rgba(240,165,0,0.3); }
-  .risk-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    border-radius: 100px; padding: 2px 8px; font-size: 9px; font-weight: 600; letter-spacing: 0.04em;
-  }
-  .risk-badge.red { background: rgba(232,57,74,0.25); color: #ff7a87; }
-  .risk-badge.green { background: rgba(29,185,123,0.25); color: #4dd9a4; }
-  .risk-badge.yellow { background: rgba(240,165,0,0.2); color: #ffc84a; }
-  .phone-label { color: rgba(255,255,255,0.5); font-size: 9px; margin-bottom: 2px; }
-  .phone-text { color: rgba(255,255,255,0.85); font-size: 10px; line-height: 1.4; }
-  .phone-title { color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 600; margin-bottom: 3px; }
-  .risk-bar-bg { height: 5px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-top: 8px; overflow: hidden; }
-  .risk-bar-fill { height: 100%; border-radius: 10px; }
-
-  @keyframes floatCard {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-4px); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  .fade-up { animation: fadeUp 0.7s ease both; }
-  .fade-up-d1 { animation-delay: 0.1s; }
-  .fade-up-d2 { animation-delay: 0.22s; }
-  .fade-up-d3 { animation-delay: 0.34s; }
-  .fade-up-d4 { animation-delay: 0.46s; }
-
-  /* OBSERVE SCROLL ANIMATIONS */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* CARDS */
-  .glass-card {
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(13,27,62,0.08);
-    border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(13,27,62,0.06);
-    transition: box-shadow 0.25s, transform 0.25s;
-  }
-  .glass-card:hover {
-    box-shadow: 0 12px 40px rgba(13,27,62,0.12);
-    transform: translateY(-3px);
-  }
-
-  /* STEP CONNECTOR */
-  .step-line {
-    position: absolute; top: 28px; left: calc(50% + 28px);
-    width: calc(100% - 56px); height: 2px;
-    background: linear-gradient(90deg, #3a6bff 0%, #1db97b 100%);
-    opacity: 0.3;
-  }
-
-  /* RISK METER CARDS */
-  .risk-meter-card {
-    border-radius: 20px; padding: 28px;
-    transition: transform 0.25s;
-  }
-  .risk-meter-card:hover { transform: translateY(-4px); }
-  .risk-meter-card.green-card { background: var(--green-bg); border: 1.5px solid rgba(29,185,123,0.2); }
-  .risk-meter-card.yellow-card { background: var(--yellow-bg); border: 1.5px solid rgba(240,165,0,0.2); }
-  .risk-meter-card.red-card { background: var(--red-bg); border: 1.5px solid rgba(232,57,74,0.2); }
-
-  /* ICON CIRCLE */
-  .icon-circle {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-  }
-
-  /* CTA BUTTON */
+  /* ── BUTTONS ── */
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: #3a6bff;
+    background: var(--teal);
     color: #fff;
-    padding: 14px 28px;
-    border-radius: 100px;
+    padding: 14px 28px; border-radius: 100px;
     font-weight: 600; font-size: 15px;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(58,107,255,0.35);
+    box-shadow: 0 6px 24px rgba(13,127,110,0.4);
+    transition: background .2s, transform .2s, box-shadow .2s;
   }
-  .btn-primary:hover {
-    background: #2a56e8;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(58,107,255,0.42);
-  }
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(13,127,110,0.45); }
   .btn-ghost {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(255,255,255,0.1);
-    border: 1.5px solid rgba(255,255,255,0.25);
+    border: 1.5px solid rgba(255,255,255,0.22);
     color: #fff;
-    padding: 13px 28px;
-    border-radius: 100px;
+    padding: 13px 28px; border-radius: 100px;
     font-weight: 500; font-size: 15px;
-    transition: background 0.2s, transform 0.2s;
     text-decoration: none;
+    transition: background .2s, transform .2s;
   }
-  .btn-ghost:hover {
-    background: rgba(255,255,255,0.18);
-    transform: translateY(-2px);
-  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
 
-  /* STORE BUTTONS */
-  .store-btn {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: rgba(13,27,62,0.07);
-    border: 1.5px solid rgba(13,27,62,0.12);
-    border-radius: 14px; padding: 14px 24px;
-    opacity: 0.6; cursor: not-allowed;
-    font-size: 14px; font-weight: 500; color: var(--navy);
-  }
-
-  /* FOOTER */
-  footer { background: var(--navy); color: rgba(255,255,255,0.55); }
-
-  /* NAV LINK */
-  .nav-link {
-    color: var(--navy); font-size: 14px; font-weight: 500;
-    text-decoration: none; opacity: 0.7;
-    transition: opacity 0.2s;
-  }
-  .nav-link:hover { opacity: 1; }
-
-  /* DIVIDER DOTS */
-  .dot-divider { color: var(--gray-light); }
-
-  /* CATEGORY ICON */
-  .cat-icon { font-size: 28px; }
-
-  /* SECTION LABEL */
+  /* ── SECTION LABEL ── */
   .section-label {
     display: inline-block;
-    background: rgba(58,107,255,0.08);
-    color: #3a6bff;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 5px 14px; border-radius: 100px;
-    margin-bottom: 14px;
+    background: rgba(13,127,110,0.1);
+    color: var(--teal);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
+  }
+  .section-label-light {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
   }
 
-  /* SHIELD LOGO */
-  .shield-logo {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px; color: var(--navy);
-    text-decoration: none;
+  /* ── CARDS ── */
+  .glass-card {
+    background: #fff;
+    border: 1px solid rgba(12,26,56,0.07);
+    border-radius: 22px;
+    box-shadow: 0 2px 20px rgba(12,26,56,0.05);
+    transition: box-shadow .25s, transform .25s;
   }
-  .shield-icon { font-size: 22px; }
+  .glass-card:hover { box-shadow: 0 12px 40px rgba(12,26,56,0.11); transform: translateY(-3px); }
+
+  /* ── PROTECT CARDS ── */
+  .protect-card {
+    border-radius: 24px; padding: 36px; position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .protect-card:hover { transform: translateY(-4px); }
+  .protect-card.senior { background: linear-gradient(140deg, #0c1a38 0%, #1a3060 100%); }
+  .protect-card.child { background: linear-gradient(140deg, #0d2a50 0%, #0c3a6a 100%); }
+  .protect-card.family { background: linear-gradient(140deg, #0a2540 0%, #143055 100%); }
+  .protect-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 90% 10%, rgba(13,127,110,0.2) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .protect-card .emoji { font-size: 48px; margin-bottom: 20px; display: block; }
+  .protect-card h3 { color: #fff; font-size: 22px; margin-bottom: 12px; }
+  .protect-card p { color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.75; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .protect-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75);
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    margin: 4px 3px 0; letter-spacing: 0.03em;
+  }
+
+  /* ── PHONE MOCKUP ── */
+  .phone-shell {
+    width: 230px; height: 460px;
+    background: #0a1020;
+    border-radius: 38px;
+    border: 6px solid #1e2d50;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 0 0 2px rgba(255,255,255,0.03);
+    position: relative; overflow: hidden;
+  }
+  .phone-notch { width: 72px; height: 24px; background: #0a1020; border-radius: 0 0 14px 14px; margin: 0 auto; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
+  .phone-notch::after { content: ''; width: 10px; height: 10px; background: #1a2540; border-radius: 50%; border: 2px solid #243060; }
+  .phone-screen { background: linear-gradient(170deg, #0c1a35 0%, #0e2045 100%); height: 100%; padding: 6px 14px 18px; display: flex; flex-direction: column; gap: 9px; }
+  .phone-header { text-align: center; padding: 4px 0 6px; }
+  .phone-header-sub { color: rgba(255,255,255,0.4); font-size: 10px; margin-bottom: 2px; }
+  .phone-header-title { color: #fff; font-size: 13px; font-weight: 700; font-family: 'Lora', serif; }
+  .p-card { border-radius: 14px; padding: 12px; }
+  .p-card.red-c { background: rgba(217,58,74,0.13); border: 1px solid rgba(217,58,74,0.25); }
+  .p-card.green-c { background: rgba(26,173,120,0.13); border: 1px solid rgba(26,173,120,0.25); }
+  .p-card.yellow-c { background: rgba(232,152,0,0.11); border: 1px solid rgba(232,152,0,0.25); }
+  .p-badge { display: inline-flex; align-items: center; gap: 4px; border-radius: 100px; padding: 2px 8px; font-size: 9px; font-weight: 700; letter-spacing: 0.04em; }
+  .p-badge.red-b { background: rgba(217,58,74,0.22); color: #ff8a96; }
+  .p-badge.green-b { background: rgba(26,173,120,0.22); color: #4ddba8; }
+  .p-badge.yellow-b { background: rgba(232,152,0,0.18); color: #ffc84a; }
+  .p-title { color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 700; margin-bottom: 3px; }
+  .p-body { color: rgba(255,255,255,0.55); font-size: 10px; line-height: 1.5; }
+  .p-bar-bg { height: 4px; background: rgba(255,255,255,0.07); border-radius: 10px; margin-top: 8px; overflow: hidden; }
+  .p-bar-fill { height: 100%; border-radius: 10px; }
+  .p-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; }
+
+  @keyframes floatPhone { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .float-phone { animation: floatPhone 5s ease-in-out infinite; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── FADE UP (hero, immediate) ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
+  .fu { animation: fadeUp .75s ease both; }
+  .fu1 { animation-delay: .08s; }
+  .fu2 { animation-delay: .2s; }
+  .fu3 { animation-delay: .32s; }
+  .fu4 { animation-delay: .44s; }
+  .fu5 { animation-delay: .56s; }
+
+  /* ── RISK CARDS ── */
+  .risk-card-outer {
+    border-radius: 22px; padding: 30px;
+    transition: transform .25s;
+  }
+  .risk-card-outer:hover { transform: translateY(-4px); }
+  .risk-card-outer.g { background: var(--green-bg); border: 1.5px solid rgba(26,173,120,0.18); }
+  .risk-card-outer.y { background: var(--yellow-bg); border: 1.5px solid rgba(232,152,0,0.18); }
+  .risk-card-outer.r { background: var(--red-bg); border: 1.5px solid rgba(217,58,74,0.18); }
+  /* Ensure text in risk cards is always dark */
+  .risk-card-outer.g h3,
+  .risk-card-outer.y h3,
+  .risk-card-outer.r h3 { color: var(--navy) !important; }
+  .risk-card-outer.g p,
+  .risk-card-outer.y p,
+  .risk-card-outer.r p { color: #3a4460; }
+
+  /* ── IMPACT SECTION ── */
+  .impact-bg {
+    background: linear-gradient(160deg, #0a1730 0%, #0e2348 100%);
+    position: relative; overflow: hidden;
+  }
+  .impact-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(13,127,110,0.15) 0%, transparent 65%);
+  }
+  .impact-stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 28px;
+    transition: background .25s;
+  }
+  .impact-stat:hover { background: rgba(255,255,255,0.09); }
+  /* Impact stat text - always light on dark bg */
+  .impact-stat .stat-number { color: #ffffff; font-family: 'Lora', serif; font-size: 36px; font-weight: 700; line-height: 1.1; margin-bottom: 8px; }
+  .impact-stat .stat-label { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 1.6; }
+
+  /* ── DOWNLOAD BG ── */
+  .dl-bg {
+    background: linear-gradient(150deg, #0a1730 0%, #102040 50%, #0c2550 100%);
+    position: relative; overflow: hidden;
+  }
+  .dl-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 110%, rgba(13,127,110,0.2) 0%, transparent 65%);
+  }
+
+  /* ── STORE BUTTONS (disabled) ── */
+  .store-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 16px; padding: 14px 24px;
+    opacity: 0.55; cursor: not-allowed;
+    color: #fff; font-size: 14px;
+  }
+  .store-btn .store-label-small { font-size: 10px; opacity: 0.65; display: block; }
+  .store-btn .store-label-big { font-size: 15px; font-weight: 700; display: block; }
+
+  /* ── FOOTER ── */
+  footer { background: #080f20; }
+  footer a { color: rgba(255,255,255,0.5); font-size: 14px; text-decoration: none; transition: color .2s; }
+  footer a:hover { color: #fff; }
+  footer p { color: rgba(255,255,255,0.4); }
+
+  /* ── MISC ── */
+  .icon-box {
+    width: 50px; height: 50px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+  }
+  .step-num {
+    width: 44px; height: 44px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 800; font-family: 'Lora', serif;
+    flex-shrink: 0;
+  }
+  .tag-pill {
+    display: inline-block;
+    background: rgba(13,127,110,0.08); color: var(--teal);
+    font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 100px;
+  }
 
   @media (max-width: 768px) {
-    .phone-shell { width: 170px; height: 340px; }
-    .step-line { display: none; }
+    .phone-shell { width: 180px; height: 360px; }
+    .hero-phone-wrap { margin-top: 48px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════ NAVIGATION ══════════════════════ -->
+<!-- ══════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════ -->
 <nav>
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#" class="shield-logo">
-      <span class="shield-icon">🛡️</span>
-      TruthShield
+    <a href="#" class="logo-text">
+      <span style="font-size:22px;">🛡️</span> TruthArmor
     </a>
     <div class="hidden md:flex items-center gap-8">
-      <a href="#why" class="nav-link">Why TruthShield</a>
+      <a href="#protect" class="nav-link">Who We Protect</a>
       <a href="#how" class="nav-link">How It Works</a>
       <a href="#features" class="nav-link">Features</a>
-      <a href="#categories" class="nav-link">Categories</a>
+      <a href="#risk" class="nav-link">Risk System</a>
     </div>
-    <a href="#download" class="btn-primary text-sm py-2.5 px-5" style="box-shadow: 0 3px 14px rgba(58,107,255,0.3);">
-      Download App
-    </a>
+    <a href="#download" class="btn-primary" style="font-size:14px;padding:11px 22px;">Download App</a>
   </div>
 </nav>
 
-<!-- ══════════════════════ HERO ══════════════════════ -->
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
 <section class="hero-bg min-h-screen flex items-center py-24 relative">
   <div class="hero-grid"></div>
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
 
-    <!-- Left: copy -->
+    <!-- Left: Copy -->
     <div>
-      <div class="fade-up fade-up-d1" style="display:inline-flex;align-items:center;gap:8px;background:rgba(29,185,123,0.15);border:1px solid rgba(29,185,123,0.25);border-radius:100px;padding:5px 14px 5px 10px;margin-bottom:28px;">
-        <span style="width:7px;height:7px;background:#1db97b;border-radius:50%;display:inline-block;box-shadow:0 0 0 3px rgba(29,185,123,0.2);"></span>
-        <span style="color:#4dd9a4;font-size:12px;font-weight:600;letter-spacing:0.04em;">Real-Time Fraud Protection</span>
+      <div class="fu fu1" style="display:inline-flex;align-items:center;gap:8px;background:rgba(13,127,110,0.18);border:1px solid rgba(13,127,110,0.3);border-radius:100px;padding:5px 14px 5px 10px;margin-bottom:28px;">
+        <span style="width:7px;height:7px;background:#14a890;border-radius:50%;display:inline-block;box-shadow:0 0 0 3px rgba(20,168,144,0.22);"></span>
+        <span style="color:#4fd4c0;font-size:12px;font-weight:700;letter-spacing:0.04em;">Personal Digital Safety App</span>
       </div>
 
-      <h1 class="fade-up fade-up-d2 text-5xl md:text-6xl leading-tight font-normal text-white mb-6">
-        Protect Yourself<br /><em style="font-style:italic;color:#7ba5ff;">Before</em> the<br />Damage Happens
+      <h1 class="fu fu2" style="font-size:clamp(38px,5vw,60px);line-height:1.15;color:#ffffff;font-weight:700;margin-bottom:22px;">
+        Protect the People<br />
+        <em style="font-style:italic;color:#6ec9be;">Who Need It Most</em>
       </h1>
 
-      <p class="fade-up fade-up-d3 text-lg leading-relaxed mb-10" style="color:rgba(255,255,255,0.65);max-width:480px;">
-        TruthShield helps you identify scams, phishing attempts, fake job offers, financial fraud, and online manipulation — before you share personal information or lose money.
+      <p class="fu fu3" style="font-size:18px;line-height:1.75;color:rgba(255,255,255,0.65);max-width:500px;margin-bottom:36px;">
+        TruthArmor helps families, seniors, and young people recognize scams, online manipulation, identity theft, and digital threats — before damage happens.
       </p>
 
-      <div class="fade-up fade-up-d4 flex flex-wrap gap-4">
+      <div class="fu fu4 flex flex-wrap gap-4" style="margin-bottom:48px;">
         <a href="#download" class="btn-primary">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5z" fill="currentColor"/><path d="M5 18h14v2H5z" fill="currentColor"/></svg>
           Download App
         </a>
-        <a href="#how" class="btn-ghost">
-          Learn More
+        <a href="#protect" class="btn-ghost">
+          Who We Protect
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
 
-      <!-- Trust stats -->
-      <div class="fade-up fade-up-d4 mt-14 flex gap-10 flex-wrap">
-        <div>
-          <div class="text-3xl font-bold text-white" style="font-family:'DM Serif Display',serif;">8 <span style="font-size:18px;color:#4dd9a4">categories</span></div>
-          <div style="color:rgba(255,255,255,0.4);font-size:13px;margin-top:2px;">Fraud detection areas</div>
-        </div>
-        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
-        <div>
-          <div class="text-3xl font-bold text-white" style="font-family:'DM Serif Display',serif;">AI <span style="font-size:18px;color:#7ba5ff">powered</span></div>
-          <div style="color:rgba(255,255,255,0.4);font-size:13px;margin-top:2px;">Intelligent analysis</div>
-        </div>
-        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
-        <div>
-          <div class="text-3xl font-bold text-white" style="font-family:'DM Serif Display',serif;">Free <span style="font-size:18px;color:#f0a500">to use</span></div>
-          <div style="color:rgba(255,255,255,0.4);font-size:13px;margin-top:2px;">No subscription required</div>
-        </div>
+      <!-- Who pills -->
+      <div class="fu fu5" style="display:flex;flex-wrap:wrap;gap:10px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 14px;color:rgba(255,255,255,0.75);font-size:13px;font-weight:500;">👴 Seniors</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 14px;color:rgba(255,255,255,0.75);font-size:13px;font-weight:500;">👦 Children &amp; Teens</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 14px;color:rgba(255,255,255,0.75);font-size:13px;font-weight:500;">👨‍👩‍👧 Families</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 14px;color:rgba(255,255,255,0.75);font-size:13px;font-weight:500;">💼 Job Seekers</span>
       </div>
     </div>
 
-    <!-- Right: phone mockup -->
-    <div class="flex justify-center items-center">
+    <!-- Right: Phone mockup -->
+    <div class="flex justify-center items-center hero-phone-wrap">
       <div style="position:relative;">
-        <!-- Glow behind phone -->
-        <div style="position:absolute;inset:-40px;background:radial-gradient(ellipse at center, rgba(58,107,255,0.2) 0%, transparent 70%);"></div>
-
-        <div class="phone-shell fade-up fade-up-d3">
+        <div style="position:absolute;inset:-50px;background:radial-gradient(ellipse at center,rgba(13,127,110,0.22) 0%,transparent 70%);pointer-events:none;"></div>
+        <div class="phone-shell float-phone">
           <div class="phone-notch"></div>
           <div class="phone-screen">
-            <div class="phone-status">
-              <span class="phone-time">9:41</span>
-              <span style="color:rgba(255,255,255,0.5);font-size:9px;">⚡ 94%</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0;">
+              <span style="color:rgba(255,255,255,0.6);font-size:11px;font-weight:700;">9:41</span>
+              <span style="color:rgba(255,255,255,0.4);font-size:9px;">⚡ 91%</span>
+            </div>
+            <div class="phone-header">
+              <div class="phone-header-sub">🛡️ TruthArmor</div>
+              <div class="phone-header-title">Risk Analysis</div>
             </div>
 
-            <!-- App header -->
-            <div style="text-align:center;padding:4px 0 8px;">
-              <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:2px;">🛡️ TruthShield</div>
-              <div style="font-size:13px;color:#fff;font-weight:600;">Risk Analysis</div>
-            </div>
-
-            <!-- Red alert card -->
-            <div class="risk-card red" style="animation-delay:0s;">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-                <span class="phone-title">Suspicious Job Offer</span>
-                <span class="risk-badge red">● HIGH RISK</span>
+            <!-- Red card -->
+            <div class="p-card red-c">
+              <div class="p-row">
+                <span class="p-title">Suspicious Text</span>
+                <span class="p-badge red-b">● HIGH RISK</span>
               </div>
-              <div class="phone-label">Message snippet</div>
-              <div class="phone-text">"Earn $5,000/week from home. No experience needed. Send SSN to apply…"</div>
-              <div class="risk-bar-bg">
-                <div class="risk-bar-fill" style="width:88%;background:linear-gradient(90deg,#e8394a,#ff6b79);"></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;margin-top:4px;">
-                <span style="font-size:8px;color:rgba(255,255,255,0.4);">Risk Score</span>
-                <span style="font-size:8px;color:#ff7a87;font-weight:600;">88%</span>
-              </div>
-            </div>
-
-            <!-- Green card -->
-            <div class="risk-card green" style="animation-delay:0.8s;">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-                <span class="phone-title">Bank Notification</span>
-                <span class="risk-badge green">● LOW RISK</span>
-              </div>
-              <div class="phone-text">Official Chase Bank alert for your account statement — no sensitive data requested.</div>
-              <div class="risk-bar-bg">
-                <div class="risk-bar-fill" style="width:12%;background:linear-gradient(90deg,#1db97b,#4dd9a4);"></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;margin-top:4px;">
-                <span style="font-size:8px;color:rgba(255,255,255,0.4);">Risk Score</span>
-                <span style="font-size:8px;color:#4dd9a4;font-weight:600;">12%</span>
+              <div class="p-body">"Grandma, I'm in trouble. Send $2,000 to this number immediately…"</div>
+              <div class="p-bar-bg"><div class="p-bar-fill" style="width:91%;background:linear-gradient(90deg,#d93a4a,#ff6b7a);"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-top:5px;">
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);">Risk Score</span>
+                <span style="font-size:8px;color:#ff8a96;font-weight:700;">91%</span>
               </div>
             </div>
 
             <!-- Yellow card -->
-            <div class="risk-card yellow" style="animation-delay:1.6s;">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-                <span class="phone-title">Email Link</span>
-                <span class="risk-badge yellow">● CAUTION</span>
+            <div class="p-card yellow-c">
+              <div class="p-row">
+                <span class="p-title">Job Offer Email</span>
+                <span class="p-badge yellow-b">● CAUTION</span>
               </div>
-              <div class="phone-text">Domain registered recently. Proceed carefully before clicking.</div>
+              <div class="p-body">Unverified recruiter. Salary unrealistic. Requests personal documents upfront.</div>
+              <div class="p-bar-bg"><div class="p-bar-fill" style="width:58%;background:linear-gradient(90deg,#e89800,#ffc84a);"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-top:5px;">
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);">Risk Score</span>
+                <span style="font-size:8px;color:#ffc84a;font-weight:700;">58%</span>
+              </div>
+            </div>
+
+            <!-- Green card -->
+            <div class="p-card green-c">
+              <div class="p-row">
+                <span class="p-title">Bank Notification</span>
+                <span class="p-badge green-b">● SAFE</span>
+              </div>
+              <div class="p-body">Verified sender. No sensitive data requested. Standard account notice.</div>
+              <div class="p-bar-bg"><div class="p-bar-fill" style="width:11%;background:linear-gradient(90deg,#1aad78,#4ddba8);"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-top:5px;">
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);">Risk Score</span>
+                <span style="font-size:8px;color:#4ddba8;font-weight:700;">11%</span>
+              </div>
             </div>
 
           </div>
         </div>
 
         <!-- Floating badge -->
-        <div style="position:absolute;bottom:-18px;right:-24px;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 8px 30px rgba(13,27,62,0.18);display:flex;align-items:center;gap:8px;">
-          <span style="font-size:18px;">🧠</span>
+        <div style="position:absolute;bottom:-16px;right:-28px;background:#fff;border-radius:14px;padding:10px 16px;box-shadow:0 8px 30px rgba(12,26,56,0.16);display:flex;align-items:center;gap:10px;">
+          <div style="width:34px;height:34px;background:rgba(13,127,110,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;">❤️</div>
           <div>
-            <div style="font-size:10px;font-weight:700;color:#0d1b3e;">AI Analysis</div>
-            <div style="font-size:9px;color:#8a93a8;">Instant results</div>
+            <div style="font-size:11px;font-weight:700;color:#0c1a38;">Built for Families</div>
+            <div style="font-size:10px;color:#6b7898;">No tech knowledge needed</div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ══════════════════════ WHY SECTION ══════════════════════ -->
-<section id="why" class="py-24 bg-white">
+
+<!-- ══════════════════════════════════════
+     WHO WE PROTECT
+══════════════════════════════════════ -->
+<section id="protect" style="background:var(--soft);padding:96px 0;">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
-      <div class="section-label">The Problem</div>
-      <h2 class="text-4xl md:text-5xl text-navy mb-5" style="color:var(--navy);">Scams Are Becoming<br />Harder to Recognize</h2>
-      <p class="text-lg max-w-2xl mx-auto" style="color:var(--gray);">Modern fraud has evolved. Today's scams are crafted with AI, personalized, and designed to exploit trust. The old rules don't apply anymore.</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Card 1 -->
-      <div class="glass-card p-6 reveal">
-        <div class="icon-circle mb-4" style="background:rgba(58,107,255,0.08);">🤖</div>
-        <h3 class="text-lg mb-2" style="color:var(--navy);font-family:'DM Serif Display',serif;">AI-Generated Scams</h3>
-        <p style="color:var(--gray);font-size:14px;line-height:1.6;">Fraudsters now use generative AI to craft convincing emails, messages, and voice calls that are nearly indistinguishable from legitimate communication.</p>
-      </div>
-      <!-- Card 2 -->
-      <div class="glass-card p-6 reveal" style="transition-delay:0.1s;">
-        <div class="icon-circle mb-4" style="background:rgba(240,165,0,0.1);">💼</div>
-        <h3 class="text-lg mb-2" style="color:var(--navy);font-family:'DM Serif Display',serif;">Fake Job Listings</h3>
-        <p style="color:var(--gray);font-size:14px;line-height:1.6;">Fraudulent recruiters post realistic job offers to harvest personal information, collect fees, or launder money through unsuspecting applicants.</p>
-      </div>
-      <!-- Card 3 -->
-      <div class="glass-card p-6 reveal" style="transition-delay:0.2s;">
-        <div class="icon-circle mb-4" style="background:rgba(232,57,74,0.08);">🎣</div>
-        <h3 class="text-lg mb-2" style="color:var(--navy);font-family:'DM Serif Display',serif;">Phishing Attacks</h3>
-        <p style="color:var(--gray);font-size:14px;line-height:1.6;">Sophisticated phishing emails and texts mimic banks, government agencies, and trusted brands to steal login credentials and financial information.</p>
-      </div>
-      <!-- Card 4 -->
-      <div class="glass-card p-6 reveal" style="transition-delay:0.3s;">
-        <div class="icon-circle mb-4" style="background:rgba(29,185,123,0.08);">🔐</div>
-        <h3 class="text-lg mb-2" style="color:var(--navy);font-family:'DM Serif Display',serif;">Identity & Financial Theft</h3>
-        <p style="color:var(--gray);font-size:14px;line-height:1.6;">Once criminals have your personal data, the damage compounds — drained accounts, ruined credit, and years of recovery efforts.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════ HOW IT WORKS ══════════════════════ -->
-<section id="how" class="py-24" style="background:linear-gradient(180deg, #f0f3fa 0%, #f8f9fc 100%);">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
-      <div class="section-label">Process</div>
-      <h2 class="text-4xl md:text-5xl mb-5" style="color:var(--navy);">How TruthShield Works</h2>
-      <p class="text-lg max-w-xl mx-auto" style="color:var(--gray);">Three simple steps stand between you and financial harm.</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8 relative">
-      <!-- Connector line (desktop only) -->
-      <div class="hidden md:block" style="position:absolute;top:40px;left:calc(16.7% + 24px);width:calc(66.6% - 48px);height:2px;background:linear-gradient(90deg,#3a6bff33 0%,#1db97b33 100%);"></div>
-
-      <!-- Step 1 -->
-      <div class="text-center reveal">
-        <div style="width:80px;height:80px;background:linear-gradient(135deg,#3a6bff,#5a8aff);border-radius:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;box-shadow:0 12px 32px rgba(58,107,255,0.3);position:relative;z-index:1;">🔍</div>
-        <div style="display:inline-block;background:#3a6bff;color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:100px;margin-bottom:10px;letter-spacing:0.05em;">STEP 1</div>
-        <h3 class="text-xl mb-3" style="color:var(--navy);font-family:'DM Serif Display',serif;">Choose What to Check</h3>
-        <p style="color:var(--gray);font-size:14px;line-height:1.7;">Select from categories like job offers, emails, bank messages, government notices, online relationships, and websites.</p>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="text-center reveal" style="transition-delay:0.15s;">
-        <div style="width:80px;height:80px;background:linear-gradient(135deg,#5a4bff,#3a6bff);border-radius:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;box-shadow:0 12px 32px rgba(90,75,255,0.3);position:relative;z-index:1;">📋</div>
-        <div style="display:inline-block;background:#5a4bff;color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:100px;margin-bottom:10px;letter-spacing:0.05em;">STEP 2</div>
-        <h3 class="text-xl mb-3" style="color:var(--navy);font-family:'DM Serif Display',serif;">Upload or Paste Information</h3>
-        <p style="color:var(--gray);font-size:14px;line-height:1.7;">Submit screenshots, paste message text, enter URLs, or describe what you received. TruthShield handles multiple formats.</p>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="text-center reveal" style="transition-delay:0.3s;">
-        <div style="width:80px;height:80px;background:linear-gradient(135deg,#1db97b,#0fcc8a);border-radius:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;box-shadow:0 12px 32px rgba(29,185,123,0.3);position:relative;z-index:1;">🛡️</div>
-        <div style="display:inline-block;background:#1db97b;color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:100px;margin-bottom:10px;letter-spacing:0.05em;">STEP 3</div>
-        <h3 class="text-xl mb-3" style="color:var(--navy);font-family:'DM Serif Display',serif;">Get Instant Risk Analysis</h3>
-        <p style="color:var(--gray);font-size:14px;line-height:1.7;">Receive a color-coded risk score, confidence level, clear explanation of warning signs, and actionable safety guidance.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════ FEATURES ══════════════════════ -->
-<section id="features" class="py-24 bg-white">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
-      <div class="section-label">Capabilities</div>
-      <h2 class="text-4xl md:text-5xl mb-5" style="color:var(--navy);">Built for Real-World<br />Protection</h2>
-      <p class="text-lg max-w-xl mx-auto" style="color:var(--gray);">Every feature is designed around the actual threats people face today.</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-      <!-- Feature cards -->
-      <div class="glass-card p-6 reveal">
-        <div class="text-3xl mb-4">🧠</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Smart Scam Detection</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">AI-assisted analysis flags suspicious messages, requests for money, and manipulation tactics across all categories.</p>
-      </div>
-
-      <div class="glass-card p-6 reveal" style="transition-delay:0.08s;">
-        <div class="text-3xl mb-4">📸</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Screenshot Analysis</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">Upload screenshots and TruthShield extracts and reviews the text automatically — no manual retyping required.</p>
-      </div>
-
-      <div class="glass-card p-6 reveal" style="transition-delay:0.16s;">
-        <div class="text-3xl mb-4">🟢</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Risk Level System</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">Color-coded results: <strong style="color:var(--green);">Green</strong> for low risk, <strong style="color:var(--yellow);">Yellow</strong> for caution, <strong style="color:var(--red);">Red</strong> for high risk — clear at a glance.</p>
-      </div>
-
-      <div class="glass-card p-6 reveal" style="transition-delay:0.24s;">
-        <div class="text-3xl mb-4">🔐</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Identity Protection</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">Recognizes attempts to collect SSNs, financial data, and personal information before you share anything sensitive.</p>
-      </div>
-
-      <div class="glass-card p-6 reveal">
-        <div class="text-3xl mb-4">💼</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Job Scam Detection</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">Identify fake recruiters, suspicious offers with unrealistic pay, and data harvesting disguised as employment.</p>
-      </div>
-
-      <div class="glass-card p-6 reveal" style="transition-delay:0.08s;">
-        <div class="text-3xl mb-4">❤️‍🔥</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Romance Scam Awareness</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">Detect emotional manipulation patterns, love-bombing behavior, and financial exploitation tactics in online relationships.</p>
-      </div>
-
-      <div class="glass-card p-6 reveal" style="transition-delay:0.16s;">
-        <div class="text-3xl mb-4">🧒</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Child Safety Monitoring</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">Identify potentially dangerous interactions, grooming behaviors, and age-inappropriate contact patterns.</p>
-      </div>
-
-      <div class="glass-card p-6 reveal" style="transition-delay:0.24s;">
-        <div class="text-3xl mb-4">🎣</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:8px;">Phishing & Fraud Detection</h3>
-        <p style="color:var(--gray);font-size:13px;line-height:1.6;">Check suspicious emails, texts, and fake websites before clicking any links or entering your credentials.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════ RISK METER ══════════════════════ -->
-<section class="py-24" style="background:linear-gradient(180deg,#f0f3fa 0%, #e8edf8 100%);">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
-      <div class="section-label">Risk System</div>
-      <h2 class="text-4xl md:text-5xl mb-5" style="color:var(--navy);">Clear Answers, Not Confusion</h2>
-      <p class="text-lg max-w-xl mx-auto" style="color:var(--gray);">TruthShield's three-tier risk system gives you an immediate, actionable verdict — no technical knowledge required.</p>
+      <div class="section-label">Who We Protect</div>
+      <h2 style="font-size:clamp(32px,4vw,48px);color:var(--navy);margin-bottom:16px;">Designed for the People<br />You Care About Most</h2>
+      <p style="font-size:17px;color:var(--gray);max-width:540px;margin:0 auto;line-height:1.7;">Digital threats don't discriminate. TruthArmor is built specifically to protect those most at risk from online harm.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <!-- Green -->
-      <div class="risk-meter-card green-card reveal">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:40px;height:40px;background:rgba(29,185,123,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">✅</div>
-          <div>
-            <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);font-weight:700;">Low Risk</div>
-            <div style="font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy);">All Clear</div>
+
+      <!-- Seniors -->
+      <div class="protect-card senior reveal">
+        <span class="emoji">👴</span>
+        <h3>Protecting Seniors</h3>
+        <p>Older adults are increasingly targeted by banking scams, fake IRS calls, romance scams, phishing attacks, and financial manipulation. TruthArmor gives them a simple way to check before they respond.</p>
+        <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:4px;">
+          <span class="protect-tag">Banking Scams</span>
+          <span class="protect-tag">IRS Fraud</span>
+          <span class="protect-tag">Romance Scams</span>
+          <span class="protect-tag">Phishing</span>
+        </div>
+      </div>
+
+      <!-- Children & Teens -->
+      <div class="protect-card child reveal" style="transition-delay:.12s;">
+        <span class="emoji">👦</span>
+        <h3>Protecting Children &amp; Teens</h3>
+        <p>TruthArmor helps families recognize online predators, grooming behavior, manipulation tactics, sextortion risks, and unsafe digital interactions — before irreversible harm occurs.</p>
+        <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:4px;">
+          <span class="protect-tag">Online Predators</span>
+          <span class="protect-tag">Grooming</span>
+          <span class="protect-tag">Sextortion</span>
+          <span class="protect-tag">Manipulation</span>
+        </div>
+      </div>
+
+      <!-- Families -->
+      <div class="protect-card family reveal" style="transition-delay:.24s;">
+        <span class="emoji">👨‍👩‍👧</span>
+        <h3>Protecting Families</h3>
+        <p>From phishing texts to identity theft and AI-generated scams, TruthArmor helps entire families make safer digital decisions in real time — with no technical expertise required.</p>
+        <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:4px;">
+          <span class="protect-tag">Identity Theft</span>
+          <span class="protect-tag">Phishing</span>
+          <span class="protect-tag">Fake Websites</span>
+          <span class="protect-tag">AI Scams</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     WHY IT MATTERS (Impact Stats)
+══════════════════════════════════════ -->
+<section class="impact-bg" style="padding:96px 0;">
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <div class="section-label-light">Why It Matters</div>
+      <h2 style="font-size:clamp(30px,4vw,46px);color:#ffffff;margin-bottom:16px;">The Threat Is Real.<br />The Harm Is Preventable.</h2>
+      <p style="font-size:17px;color:rgba(255,255,255,0.55);max-width:520px;margin:0 auto;line-height:1.7;">Digital fraud is growing faster than most people realize — and it disproportionately affects the most vulnerable.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="impact-stat reveal">
+        <div class="stat-number">#1</div>
+        <div class="stat-label">Financial scams are the leading form of fraud reported against older adults each year.</div>
+      </div>
+
+      <div class="impact-stat reveal" style="transition-delay:.1s;">
+        <div class="stat-number">↑ AI</div>
+        <div class="stat-label">AI-generated phishing emails are increasingly indistinguishable from legitimate messages.</div>
+      </div>
+
+      <div class="impact-stat reveal" style="transition-delay:.2s;">
+        <div class="stat-number">Millions</div>
+        <div class="stat-label">Fake job listings are used to harvest personal information from unsuspecting job seekers every year.</div>
+      </div>
+
+      <div class="impact-stat reveal" style="transition-delay:.3s;">
+        <div class="stat-number">↑ Kids</div>
+        <div class="stat-label">Reports of online grooming and child exploitation continue to rise across social platforms.</div>
+      </div>
+
+    </div>
+
+    <!-- Emotional callout -->
+    <div class="reveal" style="margin-top:48px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:22px;padding:36px 40px;display:flex;flex-wrap:wrap;align-items:center;gap:24px;justify-content:space-between;">
+      <div>
+        <div style="color:#ffffff;font-family:'Lora',serif;font-size:22px;font-weight:600;margin-bottom:8px;">Most victims never saw it coming.</div>
+        <div style="color:rgba(255,255,255,0.55);font-size:15px;line-height:1.7;max-width:520px;">Scams are designed to feel legitimate. The right tool makes all the difference — especially for those who are most at risk.</div>
+      </div>
+      <a href="#download" class="btn-primary" style="flex-shrink:0;">Get TruthArmor</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     WHY — REAL WORLD CONSEQUENCES
+══════════════════════════════════════ -->
+<section id="why" style="background:#ffffff;padding:96px 0;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="section-label">The Problem</div>
+      <h2 style="font-size:clamp(30px,4vw,46px);color:var(--navy);margin-bottom:16px;">Scams Are Becoming<br />Harder to Recognize</h2>
+      <p style="font-size:17px;color:var(--gray);max-width:500px;margin:0 auto;line-height:1.7;">Modern fraud is personal, targeted, and emotionally sophisticated. It exploits trust, urgency, and fear.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="glass-card p-7 reveal">
+        <div class="icon-box mb-5" style="background:rgba(13,127,110,0.08);font-size:26px;">💰</div>
+        <h3 style="font-size:17px;color:var(--navy);margin-bottom:8px;">Financial Exploitation</h3>
+        <p style="color:var(--gray);font-size:14px;line-height:1.7;">Scammers pose as banks, government agencies, and family members to pressure victims into sending money or revealing account information.</p>
+      </div>
+
+      <div class="glass-card p-7 reveal" style="transition-delay:.08s;">
+        <div class="icon-box mb-5" style="background:rgba(217,58,74,0.07);font-size:26px;">💔</div>
+        <h3 style="font-size:17px;color:var(--navy);margin-bottom:8px;">Emotional Manipulation</h3>
+        <p style="color:var(--gray);font-size:14px;line-height:1.7;">Romance scammers and predators build trust over weeks or months before exploiting victims financially or psychologically.</p>
+      </div>
+
+      <div class="glass-card p-7 reveal" style="transition-delay:.16s;">
+        <div class="icon-box mb-5" style="background:rgba(232,152,0,0.08);font-size:26px;">🪪</div>
+        <h3 style="font-size:17px;color:var(--navy);margin-bottom:8px;">Identity Theft</h3>
+        <p style="color:var(--gray);font-size:14px;line-height:1.7;">Once personal information is stolen, the damage compounds — affecting credit, finances, and reputation for years after the initial incident.</p>
+      </div>
+
+      <div class="glass-card p-7 reveal" style="transition-delay:.24s;">
+        <div class="icon-box mb-5" style="background:rgba(58,107,255,0.07);font-size:26px;">🤖</div>
+        <h3 style="font-size:17px;color:var(--navy);margin-bottom:8px;">AI-Generated Fraud</h3>
+        <p style="color:var(--gray);font-size:14px;line-height:1.7;">Scammers now use AI to craft convincing fake emails, voice calls, and messages — making old warning signs unreliable.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════ -->
+<section id="how" style="background:var(--soft);padding:96px 0;">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="section-label">How It Works</div>
+      <h2 style="font-size:clamp(30px,4vw,46px);color:var(--navy);margin-bottom:16px;">Three Simple Steps to Safety</h2>
+      <p style="font-size:17px;color:var(--gray);max-width:480px;margin:0 auto;line-height:1.7;">No technical knowledge required. TruthArmor was designed to be used by anyone, at any age.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+
+      <!-- Step 1 -->
+      <div class="glass-card reveal" style="padding:32px 36px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;box-shadow:0 8px 24px rgba(13,127,110,0.3);">1</div>
+        <div style="flex:1;min-width:220px;">
+          <h3 style="font-size:20px;color:var(--navy);margin-bottom:8px;">Choose What You Want to Check</h3>
+          <p style="color:var(--gray);font-size:15px;line-height:1.7;margin-bottom:14px;">Select the type of content you're concerned about. TruthArmor covers all common scam scenarios.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="tag-pill">Suspicious Text</span>
+            <span class="tag-pill">Job Offer</span>
+            <span class="tag-pill">Bank Alert</span>
+            <span class="tag-pill">Website Link</span>
+            <span class="tag-pill">Online Relationship</span>
+            <span class="tag-pill">Child Interaction</span>
           </div>
         </div>
-        <!-- Mini bar -->
-        <div style="height:6px;background:rgba(29,185,123,0.15);border-radius:10px;overflow:hidden;margin-bottom:16px;">
-          <div style="width:15%;height:100%;background:linear-gradient(90deg,#1db97b,#4dd9a4);border-radius:10px;"></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="glass-card reveal" style="padding:32px 36px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;">
+        <div class="step-num" style="background:linear-gradient(135deg,#1a5eb0,#2a7add);color:#fff;box-shadow:0 8px 24px rgba(26,94,176,0.28);">2</div>
+        <div style="flex:1;min-width:220px;">
+          <h3 style="font-size:20px;color:var(--navy);margin-bottom:8px;">Upload or Paste Information</h3>
+          <p style="color:var(--gray);font-size:15px;line-height:1.7;">Submit a screenshot, paste the message text, or enter a link. TruthArmor handles multiple formats so analysis is always quick and straightforward.</p>
         </div>
-        <p style="font-size:14px;line-height:1.7;color:#2d5a4a;">No obvious high-risk patterns detected. Continue cautiously and verify information independently through official channels.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="glass-card reveal" style="padding:32px 36px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--green),#0fc97c);color:#fff;box-shadow:0 8px 24px rgba(26,173,120,0.3);">3</div>
+        <div style="flex:1;min-width:220px;">
+          <h3 style="font-size:20px;color:var(--navy);margin-bottom:8px;">Receive Instant Risk Guidance</h3>
+          <p style="color:var(--gray);font-size:15px;line-height:1.7;margin-bottom:14px;">TruthArmor returns a clear risk level, confidence score, plain-language explanation, and recommended next steps — instantly.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="display:inline-flex;align-items:center;gap:5px;background:var(--green-bg);color:var(--green);font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;">● Risk Level</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;background:var(--yellow-bg);color:var(--yellow);font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;">● Confidence Score</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(58,107,255,0.07);color:#3a6bff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;">● Next Steps</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FEATURES
+══════════════════════════════════════ -->
+<section id="features" style="background:#ffffff;padding:96px 0;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="section-label">Features</div>
+      <h2 style="font-size:clamp(30px,4vw,46px);color:var(--navy);margin-bottom:16px;">Protection Built Around<br />Real People</h2>
+      <p style="font-size:17px;color:var(--gray);max-width:500px;margin:0 auto;line-height:1.7;">Every feature was designed with vulnerable users in mind — clear, calm, and actionable.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="glass-card p-6 reveal">
+        <div style="font-size:28px;margin-bottom:14px;">🛡️</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Real-Time Scam Protection</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Recognize suspicious messages before sharing personal information or sending money.</p>
+      </div>
+
+      <div class="glass-card p-6 reveal" style="transition-delay:.07s;">
+        <div style="font-size:28px;margin-bottom:14px;">📸</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Screenshot Analysis</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Upload a screenshot and get instant analysis — no retyping, no technical steps required.</p>
+      </div>
+
+      <div class="glass-card p-6 reveal" style="transition-delay:.14s;">
+        <div style="font-size:28px;margin-bottom:14px;">🟢</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Simple Risk Guidance</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Easy color alerts — green, yellow, or red — help anyone quickly understand if something is dangerous.</p>
+      </div>
+
+      <div class="glass-card p-6 reveal" style="transition-delay:.21s;">
+        <div style="font-size:28px;margin-bottom:14px;">🔐</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Identity Protection Alerts</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Flags attempts to collect Social Security numbers, financial data, and personal information.</p>
+      </div>
+
+      <div class="glass-card p-6 reveal">
+        <div style="font-size:28px;margin-bottom:14px;">💼</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Job Scam Detection</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Identify fake recruiters, unrealistic offers, and data-harvesting schemes disguised as employment opportunities.</p>
+      </div>
+
+      <div class="glass-card p-6 reveal" style="transition-delay:.07s;">
+        <div style="font-size:28px;margin-bottom:14px;">❤️</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Romance Scam Awareness</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Detect emotional manipulation, financial exploitation tactics, and the warning signs of relationship-based fraud.</p>
+      </div>
+
+      <div class="glass-card p-6 reveal" style="transition-delay:.14s;">
+        <div style="font-size:28px;margin-bottom:14px;">🧒</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Child Safety Monitoring</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Help parents identify grooming behavior, online predator patterns, and dangerous digital interactions.</p>
+      </div>
+
+      <div class="glass-card p-6 reveal" style="transition-delay:.21s;">
+        <div style="font-size:28px;margin-bottom:14px;">🎣</div>
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;">Phishing &amp; Fraud Detection</h3>
+        <p style="color:var(--gray);font-size:13px;line-height:1.65;">Check suspicious emails, texts, and websites before clicking any links or entering credentials.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     RISK SYSTEM
+══════════════════════════════════════ -->
+<section id="risk" style="background:var(--soft);padding:96px 0;">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="section-label">Risk System</div>
+      <h2 style="font-size:clamp(30px,4vw,46px);color:var(--navy);margin-bottom:16px;">Clear Answers, Not Confusion</h2>
+      <p style="font-size:17px;color:var(--gray);max-width:480px;margin:0 auto;line-height:1.7;">TruthArmor's three-level system gives anyone an immediate, plain-language verdict — no guesswork needed.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Green -->
+      <div class="risk-card-outer g reveal">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <div style="width:44px;height:44px;background:rgba(26,173,120,0.14);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;">✅</div>
+          <div>
+            <div style="font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:800;margin-bottom:2px;">Low Risk</div>
+            <div style="font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--navy);">All Clear</div>
+          </div>
+        </div>
+        <div style="height:5px;background:rgba(26,173,120,0.14);border-radius:10px;overflow:hidden;margin-bottom:18px;">
+          <div style="width:12%;height:100%;background:linear-gradient(90deg,#1aad78,#4ddba8);border-radius:10px;"></div>
+        </div>
+        <p style="font-size:14px;line-height:1.75;color:#2a5040;">No major warning signs detected. Continue cautiously and verify information independently through official channels.</p>
       </div>
 
       <!-- Yellow -->
-      <div class="risk-meter-card yellow-card reveal" style="transition-delay:0.12s;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:40px;height:40px;background:rgba(240,165,0,0.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">⚠️</div>
+      <div class="risk-card-outer y reveal" style="transition-delay:.12s;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <div style="width:44px;height:44px;background:rgba(232,152,0,0.12);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;">⚠️</div>
           <div>
-            <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--yellow);font-weight:700;">Caution</div>
-            <div style="font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy);">Proceed Carefully</div>
+            <div style="font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--yellow);font-weight:800;margin-bottom:2px;">Caution</div>
+            <div style="font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--navy);">Proceed Carefully</div>
           </div>
         </div>
-        <div style="height:6px;background:rgba(240,165,0,0.15);border-radius:10px;overflow:hidden;margin-bottom:16px;">
-          <div style="width:55%;height:100%;background:linear-gradient(90deg,#f0a500,#ffc84a);border-radius:10px;"></div>
+        <div style="height:5px;background:rgba(232,152,0,0.14);border-radius:10px;overflow:hidden;margin-bottom:18px;">
+          <div style="width:55%;height:100%;background:linear-gradient(90deg,#e89800,#ffc84a);border-radius:10px;"></div>
         </div>
-        <p style="font-size:14px;line-height:1.7;color:#5a4a1a;">Some suspicious patterns were detected. Verify carefully before continuing, sharing any information, or making payments.</p>
+        <p style="font-size:14px;line-height:1.75;color:#4a3800;">Some suspicious patterns detected. Verify carefully before continuing, sharing information, or making any payments.</p>
       </div>
 
       <!-- Red -->
-      <div class="risk-meter-card red-card reveal" style="transition-delay:0.24s;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:40px;height:40px;background:rgba(232,57,74,0.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">🚨</div>
+      <div class="risk-card-outer r reveal" style="transition-delay:.24s;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <div style="width:44px;height:44px;background:rgba(217,58,74,0.12);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;">🚨</div>
           <div>
-            <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--red);font-weight:700;">High Risk</div>
-            <div style="font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy);">Stop Immediately</div>
+            <div style="font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--red);font-weight:800;margin-bottom:2px;">High Risk</div>
+            <div style="font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--navy);">Stop Immediately</div>
           </div>
         </div>
-        <div style="height:6px;background:rgba(232,57,74,0.12);border-radius:10px;overflow:hidden;margin-bottom:16px;">
-          <div style="width:90%;height:100%;background:linear-gradient(90deg,#e8394a,#ff6b79);border-radius:10px;"></div>
+        <div style="height:5px;background:rgba(217,58,74,0.12);border-radius:10px;overflow:hidden;margin-bottom:18px;">
+          <div style="width:90%;height:100%;background:linear-gradient(90deg,#d93a4a,#ff6b7a);border-radius:10px;"></div>
         </div>
-        <p style="font-size:14px;line-height:1.7;color:#5a1a20;">Multiple high-risk scam indicators detected. Avoid sharing sensitive information, sending money, or clicking any links.</p>
+        <p style="font-size:14px;line-height:1.75;color:#4a1018;">High-risk scam indicators detected. Avoid sharing sensitive information, sending money, or clicking any links.</p>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ CATEGORIES ══════════════════════ -->
-<section id="categories" class="py-24 bg-white">
+
+<!-- ══════════════════════════════════════
+     CATEGORIES
+══════════════════════════════════════ -->
+<section style="background:#ffffff;padding:96px 0;">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <div class="section-label">Protection Areas</div>
-      <h2 class="text-4xl md:text-5xl mb-5" style="color:var(--navy);">Protection for Everyday<br />Situations</h2>
-      <p class="text-lg max-w-xl mx-auto" style="color:var(--gray);">Scams appear in many forms. TruthShield covers the situations you actually encounter.</p>
+      <h2 style="font-size:clamp(30px,4vw,46px);color:var(--navy);margin-bottom:16px;">Protection for Everyday Situations</h2>
+      <p style="font-size:17px;color:var(--gray);max-width:480px;margin:0 auto;line-height:1.7;">Scams arrive in many forms. TruthArmor covers the situations real people face every day.</p>
     </div>
-
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Cat 1 -->
-      <div class="glass-card p-7 reveal flex gap-5 items-start">
-        <div style="font-size:30px;flex-shrink:0;">💼</div>
+
+      <div class="glass-card p-7 reveal" style="display:flex;gap:18px;align-items:flex-start;">
+        <span style="font-size:28px;flex-shrink:0;">💼</span>
         <div>
-          <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:6px;">Job or Work Opportunity</h3>
-          <p style="color:var(--gray);font-size:13px;line-height:1.6;">Fake job listings are increasingly used to collect personal and financial information from unsuspecting applicants.</p>
+          <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;">Job or Work Opportunity</h3>
+          <p style="color:var(--gray);font-size:13px;line-height:1.65;">Fake job listings collect personal and financial information from job seekers who just want honest work.</p>
         </div>
       </div>
 
-      <!-- Cat 2 -->
-      <div class="glass-card p-7 reveal flex gap-5 items-start" style="transition-delay:0.08s;">
-        <div style="font-size:30px;flex-shrink:0;">✉️</div>
+      <div class="glass-card p-7 reveal" style="display:flex;gap:18px;align-items:flex-start;transition-delay:.07s;">
+        <span style="font-size:28px;flex-shrink:0;">✉️</span>
         <div>
-          <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:6px;">Email or Text Message</h3>
-          <p style="color:var(--gray);font-size:13px;line-height:1.6;">Phishing campaigns use urgent language and spoofed identities to steal credentials and financial data via inbox.</p>
+          <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;">Email or Text Message</h3>
+          <p style="color:var(--gray);font-size:13px;line-height:1.65;">Phishing campaigns use urgency and spoofed identities to steal credentials and financial data from inboxes.</p>
         </div>
       </div>
 
-      <!-- Cat 3 -->
-      <div class="glass-card p-7 reveal flex gap-5 items-start" style="transition-delay:0.16s;">
-        <div style="font-size:30px;flex-shrink:0;">🏦</div>
+      <div class="glass-card p-7 reveal" style="display:flex;gap:18px;align-items:flex-start;transition-delay:.14s;">
+        <span style="font-size:28px;flex-shrink:0;">🏦</span>
         <div>
-          <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:6px;">Bank or Payment Message</h3>
-          <p style="color:var(--gray);font-size:13px;line-height:1.6;">Fraudulent bank alerts and payment requests are designed to create panic and prompt immediate action.</p>
+          <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;">Bank or Payment Message</h3>
+          <p style="color:var(--gray);font-size:13px;line-height:1.65;">Fraudulent bank alerts create panic and pressure victims into sending money or sharing account details.</p>
         </div>
       </div>
 
-      <!-- Cat 4 -->
-      <div class="glass-card p-7 reveal flex gap-5 items-start" style="transition-delay:0.08s;">
-        <div style="font-size:30px;flex-shrink:0;">🏛️</div>
+      <div class="glass-card p-7 reveal" style="display:flex;gap:18px;align-items:flex-start;transition-delay:.07s;">
+        <span style="font-size:28px;flex-shrink:0;">🏛️</span>
         <div>
-          <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:6px;">Tax or Government Notice</h3>
-          <p style="color:var(--gray);font-size:13px;line-height:1.6;">IRS and government impersonators threaten legal action to extract payments or sensitive identification data.</p>
+          <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;">Tax or Government Notice</h3>
+          <p style="color:var(--gray);font-size:13px;line-height:1.65;">IRS and government impersonators threaten legal action to extract money or sensitive identification data.</p>
         </div>
       </div>
 
-      <!-- Cat 5 -->
-      <div class="glass-card p-7 reveal flex gap-5 items-start" style="transition-delay:0.16s;">
-        <div style="font-size:30px;flex-shrink:0;">💬</div>
+      <div class="glass-card p-7 reveal" style="display:flex;gap:18px;align-items:flex-start;transition-delay:.14s;">
+        <span style="font-size:28px;flex-shrink:0;">💬</span>
         <div>
-          <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:6px;">Online Relationship</h3>
-          <p style="color:var(--gray);font-size:13px;line-height:1.6;">Romance scammers build emotional trust over weeks or months before requesting money or personal information.</p>
+          <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;">Online Relationship</h3>
+          <p style="color:var(--gray);font-size:13px;line-height:1.65;">Romance scammers build emotional trust over weeks before exploiting victims financially or psychologically.</p>
         </div>
       </div>
 
-      <!-- Cat 6 -->
-      <div class="glass-card p-7 reveal flex gap-5 items-start" style="transition-delay:0.24s;">
-        <div style="font-size:30px;flex-shrink:0;">🌐</div>
+      <div class="glass-card p-7 reveal" style="display:flex;gap:18px;align-items:flex-start;transition-delay:.21s;">
+        <span style="font-size:28px;flex-shrink:0;">🌐</span>
         <div>
-          <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:6px;">Website or Link</h3>
-          <p style="color:var(--gray);font-size:13px;line-height:1.6;">Clone websites mimic trusted brands to capture login credentials or install malware on your device.</p>
+          <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;">Website or Link</h3>
+          <p style="color:var(--gray);font-size:13px;line-height:1.65;">Clone websites mimic trusted brands to capture login credentials or install harmful software on your device.</p>
         </div>
       </div>
 
-      <!-- Cat 7 -->
-      <div class="glass-card p-7 reveal flex gap-5 items-start md:col-span-2 lg:col-span-1" style="transition-delay:0.08s;">
-        <div style="font-size:30px;flex-shrink:0;">🧒</div>
+      <div class="glass-card p-7 reveal md:col-span-2 lg:col-span-1" style="display:flex;gap:18px;align-items:flex-start;transition-delay:.07s;">
+        <span style="font-size:28px;flex-shrink:0;">🧒</span>
         <div>
-          <h3 style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:6px;">Child Safety</h3>
-          <p style="color:var(--gray);font-size:13px;line-height:1.6;">Protect children from grooming, predatory behavior, and dangerous online interactions before harm occurs.</p>
+          <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;">Child Safety</h3>
+          <p style="color:var(--gray);font-size:13px;line-height:1.65;">Protect children from grooming, predatory contact, and dangerous online interactions before harm occurs.</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ DOWNLOAD SECTION ══════════════════════ -->
-<section id="download" class="py-24 hero-bg relative overflow-hidden">
-  <div class="hero-grid"></div>
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%, rgba(58,107,255,0.2) 0%, transparent 70%);"></div>
-  <div class="max-w-3xl mx-auto px-6 text-center relative z-10 reveal">
-    <div class="section-label" style="background:rgba(29,185,123,0.15);color:#4dd9a4;border:1px solid rgba(29,185,123,0.2);">Coming Soon</div>
-    <h2 class="text-4xl md:text-5xl text-white mb-5 mt-4">Download TruthShield</h2>
-    <p class="text-lg mb-3" style="color:rgba(255,255,255,0.65);">Mobile app download links coming soon.</p>
-    <p class="text-base mb-12" style="color:rgba(255,255,255,0.4);">We're putting the finishing touches on TruthShield. Join the waitlist to be first to know.</p>
 
-    <!-- Email waitlist -->
-    <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:24px;max-width:440px;margin:0 auto 40px;">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <input type="email" placeholder="Enter your email address"
-          style="flex:1;min-width:200px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 16px;color:#fff;font-size:14px;outline:none;font-family:'DM Sans',sans-serif;"
-          onfocus="this.style.borderColor='rgba(58,107,255,0.7)'"
-          onblur="this.style.borderColor='rgba(255,255,255,0.15)'"
-        />
-        <button onclick="handleWaitlist(this)" style="background:#3a6bff;color:#fff;border:none;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#2a56e8'" onmouseout="this.style.background='#3a6bff'">
-          Notify Me
-        </button>
+<!-- ══════════════════════════════════════
+     DOWNLOAD
+══════════════════════════════════════ -->
+<section id="download" class="dl-bg" style="padding:96px 0;">
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+
+    <div class="reveal">
+      <div class="section-label-light" style="margin-bottom:20px;">Coming Soon</div>
+      <h2 style="font-size:clamp(30px,4vw,48px);color:#ffffff;margin-bottom:16px;">Download TruthArmor</h2>
+      <p style="font-size:17px;color:rgba(255,255,255,0.6);margin-bottom:10px;">Mobile app download links coming soon.</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.38);margin-bottom:44px;">Join the waitlist to be first to know when TruthArmor is available.</p>
+
+      <!-- Email waitlist -->
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:22px;max-width:420px;margin:0 auto 36px;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" placeholder="Your email address"
+            style="flex:1;min-width:180px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:12px 16px;color:#fff;font-size:14px;outline:none;font-family:'Plus Jakarta Sans',sans-serif;"
+            onfocus="this.style.borderColor='rgba(13,127,110,0.8)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.14)'"
+          />
+          <button onclick="handleWait(this)" style="background:var(--teal);color:#fff;border:none;border-radius:10px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .2s;" onmouseover="this.style.background='var(--teal-light)'" onmouseout="this.style.background='var(--teal)'">
+            Notify Me
+          </button>
+        </div>
+      </div>
+
+      <!-- Store buttons -->
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+        <div class="store-btn">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.34.07 2.28.74 3.07.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.52 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="white"/></svg>
+          <div style="text-align:left;">
+            <span class="store-label-small">Download on the</span>
+            <span class="store-label-big">App Store</span>
+          </div>
+          <span style="margin-left:4px;font-size:11px;background:rgba(255,255,255,0.1);border-radius:100px;padding:2px 9px;color:rgba(255,255,255,0.6);">Soon</span>
+        </div>
+
+        <div class="store-btn">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3.18 23.76A2 2 0 012 22V2a2 2 0 011.18-1.82l11.27 11.76L3.18 23.76zm14.4-7.86l-2.5-1.44-2.29 2.39 4.79 4.99c.5-.36.92-.85 1.05-1.43l-1.05-4.51zM21.64 10.6L19.1 9.14l-2.53 2.64 2.53 2.64 2.56-1.47c.71-.41.71-1.94-.02-2.35zM4.5 1.24l13.1 7.56-2.29 2.39-2.5-1.44L4.5 1.24z" fill="white"/></svg>
+          <div style="text-align:left;">
+            <span class="store-label-small">Get it on</span>
+            <span class="store-label-big">Google Play</span>
+          </div>
+          <span style="margin-left:4px;font-size:11px;background:rgba(255,255,255,0.1);border-radius:100px;padding:2px 9px;color:rgba(255,255,255,0.6);">Soon</span>
+        </div>
       </div>
     </div>
 
-    <!-- Store buttons -->
-    <div class="flex flex-wrap gap-4 justify-center">
-      <div class="store-btn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.34.07 2.28.74 3.07.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.52 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="currentColor"/></svg>
-        <div style="text-align:left;">
-          <div style="font-size:10px;opacity:0.6;">Download on the</div>
-          <div style="font-size:15px;font-weight:700;color:var(--navy);">App Store</div>
-        </div>
-        <span style="margin-left:6px;font-size:11px;background:rgba(13,27,62,0.08);border-radius:100px;padding:2px 8px;color:var(--gray);">Soon</span>
-      </div>
-
-      <div class="store-btn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3.18 23.76A2 2 0 012 22V2a2 2 0 011.18-1.82l11.27 11.76L3.18 23.76zm14.4-7.86l-2.5-1.44-2.29 2.39 4.79 4.99c.5-.36.92-.85 1.05-1.43l-1.05-4.51zM21.64 10.6L19.1 9.14l-2.53 2.64 2.53 2.64 2.56-1.47c.71-.41.71-1.94-.02-2.35zM4.5 1.24l13.1 7.56-2.29 2.39-2.5-1.44L4.5 1.24z" fill="currentColor"/></svg>
-        <div style="text-align:left;">
-          <div style="font-size:10px;opacity:0.6;">Get it on</div>
-          <div style="font-size:15px;font-weight:700;color:var(--navy);">Google Play</div>
-        </div>
-        <span style="margin-left:6px;font-size:11px;background:rgba(13,27,62,0.08);border-radius:100px;padding:2px 8px;color:var(--gray);">Soon</span>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ══════════════════════ FOOTER ══════════════════════ -->
-<footer class="py-14">
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer style="padding:56px 0 36px;">
   <div class="max-w-6xl mx-auto px-6">
     <div class="grid md:grid-cols-4 gap-10 mb-12">
       <div class="md:col-span-2">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
           <span style="font-size:22px;">🛡️</span>
-          <span style="font-family:'DM Serif Display',serif;font-size:20px;color:#fff;">TruthShield</span>
+          <span style="font-family:'Lora',serif;font-size:20px;font-weight:700;color:#ffffff;">TruthArmor</span>
         </div>
-        <p style="color:rgba(255,255,255,0.45);font-size:14px;line-height:1.7;max-width:280px;">Helping people recognize scams before damage happens. Real-time protection against fraud and digital manipulation.</p>
+        <p style="color:rgba(255,255,255,0.45);font-size:14px;line-height:1.75;max-width:280px;">Helping people recognize scams before damage happens. Real-time protection for families, seniors, and children.</p>
       </div>
       <div>
-        <div style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:600;margin-bottom:14px;">Product</div>
+        <div style="font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-weight:700;margin-bottom:14px;">App</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#why" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Why TruthShield</a>
-          <a href="#how" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">How It Works</a>
-          <a href="#features" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Features</a>
-          <a href="#categories" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Categories</a>
+          <a href="#protect">Who We Protect</a>
+          <a href="#how">How It Works</a>
+          <a href="#features">Features</a>
+          <a href="#risk">Risk System</a>
         </div>
       </div>
       <div>
-        <div style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:600;margin-bottom:14px;">Download</div>
+        <div style="font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-weight:700;margin-bottom:14px;">Download</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#download" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">App Store <span style="font-size:11px;opacity:0.5;">(Soon)</span></a>
-          <a href="#download" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Google Play <span style="font-size:11px;opacity:0.5;">(Soon)</span></a>
-          <a href="#download" style="color:rgba(255,255,255,0.55);font-size:14px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Join Waitlist</a>
+          <a href="#download">App Store <span style="opacity:.45;font-size:12px;">(Soon)</span></a>
+          <a href="#download">Google Play <span style="opacity:.45;font-size:12px;">(Soon)</span></a>
+          <a href="#download">Join Waitlist</a>
         </div>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;">
-      <p style="color:rgba(255,255,255,0.3);font-size:13px;">© 2025 TruthShield. All rights reserved.</p>
-      <p style="color:rgba(255,255,255,0.2);font-size:12px;">Real-time protection against scams, fraud, and digital manipulation.</p>
+    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;">
+      <p style="font-size:13px;">© 2025 TruthArmor. All rights reserved.</p>
+      <p style="font-size:12px;color:rgba(255,255,255,0.2);">Helping people recognize scams before damage happens.</p>
     </div>
   </div>
 </footer>
 
+
 <script>
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => observer.observe(el));
-
-  // Stagger child delays
-  document.querySelectorAll('.grid').forEach(grid => {
-    const reveals = grid.querySelectorAll('.reveal');
-    reveals.forEach((el, i) => {
-      if (!el.style.transitionDelay) {
-        el.style.transitionDelay = (i * 0.08) + 's';
-      }
-    });
-  });
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+  revealEls.forEach(el => obs.observe(el));
 
   // Waitlist handler
-  function handleWaitlist(btn) {
+  function handleWait(btn) {
     const input = btn.previousElementSibling;
-    if (!input.value || !input.value.includes('@')) {
-      input.style.borderColor = 'rgba(232,57,74,0.7)';
+    const val = input.value.trim();
+    if (!val || !val.includes('@')) {
+      input.style.borderColor = 'rgba(217,58,74,0.7)';
       input.placeholder = 'Please enter a valid email';
       setTimeout(() => {
-        input.style.borderColor = 'rgba(255,255,255,0.15)';
-        input.placeholder = 'Enter your email address';
-      }, 2000);
+        input.style.borderColor = 'rgba(255,255,255,0.14)';
+        input.placeholder = 'Your email address';
+      }, 2200);
       return;
     }
-    btn.textContent = '✓ You\'re on the list!';
-    btn.style.background = '#1db97b';
+    btn.textContent = "✓ You're on the list!";
+    btn.style.background = '#1aad78';
     btn.disabled = true;
     input.disabled = true;
-    input.style.opacity = '0.5';
+    input.style.opacity = '.45';
   }
-
-  // Mobile nav toggle (hamburger not added for simplicity, just ensure links visible on mobile)
 </script>
 </body>
 </html>
